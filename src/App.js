@@ -1,12 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-import PaperSheet from './Paper';
+import PersistentDrawer from './drawerAppBar';
 
 function App() {
     return (
-        <div class="main">
-            <PaperSheet />
-
+        <div>
+            <PersistentDrawer />
         </div>
     );
 }

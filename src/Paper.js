@@ -11,7 +11,7 @@ import './teilnehmer.css';
 
 const styles = theme => ({
     root: theme.mixins.gutters({
-        marginTop: theme.spacing.unit * 3,
+        marginTop: theme.spacing.unit * 1,
     }),
 });
 

@@ -5,6 +5,9 @@ import Typography from 'material-ui/Typography';
 
 
 const styles = theme => ({
+    teilnehmerName: {
+        textAlign: 'center',
+        },
     teilnehmerVorname: {
         paddingTop: 20,
         paddingBottom: 20,
