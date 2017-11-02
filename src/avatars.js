@@ -21,7 +21,7 @@ const styles = {
 function ImageAvatars(props) {
     const { classes } = props;
     return (
-        <div className={classes.row , 'avatar'}>
+        <div className={classNames(classes.row , 'avatar')}>
             <Avatar
                 alt="Adelle Charles"
                 src="https://i.pinimg.com/736x/56/b8/f3/56b8f3fe83b7e9cecccadcc8e5923765--nice-face-freckles.jpg"

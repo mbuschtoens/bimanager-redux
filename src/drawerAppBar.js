@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
@@ -12,7 +12,6 @@ import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import PaperSheet from './Paper';
-import { red, blue, cyan, purple } from 'material-ui/colors';
 
 import TeilnehmerUeberschrift from './teilnehmerUeberschrift';
 
@@ -92,11 +91,6 @@ const styles = theme => ({
         }),
     },
 });
-const color = createMuiTheme({
-    palette: {
-        primary: blue,
-    },
-});
 
 class PersistentDrawer extends React.Component {
     state = {
@@ -115,12 +109,11 @@ class PersistentDrawer extends React.Component {
         const { classes, theme } = this.props;
         const AppBarColor = {
             backgroundColor: '#003c8f'
-        }
+        };
         const styles = {
             color: '#FFF'
-        }
+        };
         return (
-            <MuiThemeProvider theme={color}>
                 <div className={classes.root}>
                     <div className={classes.appFrame}>
 
@@ -167,7 +160,6 @@ class PersistentDrawer extends React.Component {
                         </main>
                     </div>
                 </div>
-            </MuiThemeProvider>
         );
     }
 }
