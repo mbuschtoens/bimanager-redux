@@ -11,9 +11,9 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
-import PaperSheet from './Paper';
+import PaperSheet from './de/ergovia/components/teilnehmer/Paper';
 
-import TeilnehmerUeberschrift from './teilnehmerUeberschrift';
+import TeilnehmerUeberschrift from './de/ergovia/components/teilnehmer/teilnehmerUeberschrift';
 
 const drawerWidth = 240;
 
@@ -123,8 +123,7 @@ class PersistentDrawer extends React.Component {
                                         color="contrast"
                                         aria-label="open drawer"
                                         onClick={this.handleDrawerOpen}
-                                        className={classNames(classes.menuButton, this.state.open && classes.hide)}
-                                    >
+                                        className={classNames(classes.menuButton, this.state.open && classes.hide)}>
                                         <MenuIcon />
                                     </IconButton>
                                     <Typography type="title" component="p" style={styles}>

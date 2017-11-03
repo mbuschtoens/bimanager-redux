@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import ImageAvatars from './avatars';
+import ImageAvatars from '../../utils/avatars';
 import TeilnehmerName from './teilnehmerName';
 import TeilnehmerFrist from './teilnehmerFrist';
-import Dreieck from './dreieck';
+import Dreieck from '../../utils/dreieck';
 
-import './teilnehmer.css';
+import '../../styles/teilnehmer.css';
 
 const styles = theme => ({
     root: theme.mixins.gutters({

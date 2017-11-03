@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import Flag from './flagIcon';
-import Icons from './notificationIcon';
-import './teilnehmerUeberschrift.css';
+import Flag from '../../utils/flagIcon';
+import Icons from '../../utils/notificationIcon';
+import '../../styles/teilnehmerUeberschrift.css';
 
 const styles = theme => ({
    sortIcon: {
