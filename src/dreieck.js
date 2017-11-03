@@ -1,30 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import IconButton from 'material-ui/IconButton';
+import ExpandMore from 'material-ui-icons/ExpandMore';
 
 const styles = theme => ({
-    dreieck: {
-        width: 0,
-        height: 0,
-        borderLeft: '15px solid transparent',
-        borderRight: '15px solid transparent',
-        borderBottom: '20px solid #000',
-        margin: 21,
-     //   transform: 'rotate(180deg)', geöffnet und geschlossen
-    },
+        expand: {
+            textAlign: 'center',
+            fontSize: 40,
+        },
+        iconButton: {
+            margin: 15,
+        }
 });
 
-function Dreieck(props) {
+function ExpandMoreIcon(props) {
     const { classes } = props;
     return (
-        <div className={classes.dreieck}>
-
+        <div>
+            <IconButton className={classes.iconButton} >
+                <ExpandMore className={classes.expand} />
+            </IconButton>
         </div>
     );
 }
 
-Dreieck.propTypes = {
+ExpandMoreIcon.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Dreieck);
+export default withStyles(styles)(ExpandMoreIcon);

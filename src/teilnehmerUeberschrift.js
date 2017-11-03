@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-
+import Flag from './flagIcon';
+import Icons from './notificationIcon';
 import './teilnehmerUeberschrift.css';
 
+const styles = theme => ({
+   sortIcon: {
+     float: 'left',
+   },
+});
 function TeilnehmerUeberschrift(props) {
     const { classes } = props;
     return (
@@ -38,14 +44,10 @@ function TeilnehmerUeberschrift(props) {
                         </Typography>
                     </div>
                     <div className={"zieleAppBar"}>
-                        <Typography type="title" component="p" >
-                            3
-                        </Typography>
+                        <Flag />
                     </div>
                     <div className={"fristAppBar"}>
-                        <Typography type="title" component="p" >
-                            2
-                        </Typography>
+                        <Icons />
                     </div>
                 </div>
             </div>
@@ -57,4 +59,4 @@ TeilnehmerUeberschrift.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles()(TeilnehmerUeberschrift);
+export default withStyles(styles)(TeilnehmerUeberschrift);
