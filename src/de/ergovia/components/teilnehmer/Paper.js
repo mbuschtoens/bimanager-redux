@@ -6,6 +6,7 @@ import ImageAvatars from '../../utils/avatars';
 import TeilnehmerName from './teilnehmerName';
 import TeilnehmerFrist from './teilnehmerFrist';
 import Dreieck from '../../utils/dreieck';
+import ToDoExpired from '../todo/todoExpired'
 
 import '../../styles/teilnehmer.css';
 
