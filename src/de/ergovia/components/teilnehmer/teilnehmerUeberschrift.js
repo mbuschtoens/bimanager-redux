@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Flag from '../../utils/flagIcon';
 import Icons from '../../utils/notificationIcon';
-import '../../styles/teilnehmerUeberschrift.css';
+import '../../styles/teilnehmer/teilnehmerUeberschrift.css';
 
 function TeilnehmerUeberschrift(props) {
     const { classes } = props;

@@ -8,7 +8,7 @@ import TeilnehmerFrist from './teilnehmerFrist';
 import Dreieck from '../../utils/dreieck';
 import ToDoExpired from '../todo/todoExpired'
 
-import '../../styles/teilnehmer.css';
+import '../../styles/teilnehmer/teilnehmer.css';
 
 const styles = theme => ({
     root: theme.mixins.gutters({

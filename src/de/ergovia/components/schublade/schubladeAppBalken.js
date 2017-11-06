@@ -13,7 +13,7 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import PaperSheet from '../teilnehmer/hintergrundPapier';
 import TeilnehmerUeberschrift from '../teilnehmer/teilnehmerUeberschrift';
-import '../../styles/schublade.css';
+import '../../styles/schublade/schublade.css';
 import Flag from '../../utils/flagIcon';
 import Cloche from '../../utils/notificationIcon';
 
