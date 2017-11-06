@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import ImageAvatars from '../../utils/avatars';
+import ImageAvatars from './teilnehmerAvatars';
 import TeilnehmerName from './teilnehmerName';
 import TeilnehmerFrist from './teilnehmerFrist';
 import Dreieck from '../../utils/dreieck';

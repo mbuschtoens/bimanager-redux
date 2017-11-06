@@ -11,11 +11,11 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
-import PaperSheet from './de/ergovia/components/teilnehmer/Paper';
+import PaperSheet from '../teilnehmer/hintergrundPapier';
 
-import TeilnehmerUeberschrift from './de/ergovia/components/teilnehmer/teilnehmerUeberschrift';
+import TeilnehmerUeberschrift from '../teilnehmer/teilnehmerUeberschrift';
 
-const drawerWidth = 240;
+const drawerWidth = 360;
 
 const styles = theme => ({
     root: {

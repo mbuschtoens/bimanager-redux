@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import PersistentDrawer from './drawerAppBar';
+import PersistentDrawer from './de/ergovia/components/schublade/schubladeAppBalken';
 
 
 function App() {
