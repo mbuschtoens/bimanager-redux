@@ -7,11 +7,6 @@ import Flag from '../../utils/flagIcon';
 import Icons from '../../utils/notificationIcon';
 import '../../styles/teilnehmerUeberschrift.css';
 
-const styles = theme => ({
-   sortIcon: {
-     float: 'left',
-   },
-});
 function TeilnehmerUeberschrift(props) {
     const { classes } = props;
     return (
@@ -59,4 +54,4 @@ TeilnehmerUeberschrift.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TeilnehmerUeberschrift);
+export default withStyles()(TeilnehmerUeberschrift);
