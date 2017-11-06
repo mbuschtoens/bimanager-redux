@@ -12,8 +12,10 @@ import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import PaperSheet from '../teilnehmer/hintergrundPapier';
-
 import TeilnehmerUeberschrift from '../teilnehmer/teilnehmerUeberschrift';
+import '../../styles/schublade.css';
+import Flag from '../../utils/flagIcon';
+import Cloche from '../../utils/notificationIcon';
 
 const drawerWidth = 360;
 
@@ -142,10 +144,16 @@ class PersistentDrawer extends React.Component {
                             open={this.state.open}
                         >
                             <div className={classes.drawerInner}>
-                                <div className={classes.drawerHeader}>
-                                    <IconButton onClick={this.handleDrawerClose}>
-                                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                                    </IconButton>
+                                <div className={'schubladenLeiste'}>
+                                    <div className={classNames('schubGruppe' , 'schubNav')}>Gruppen</div>
+                                    <div className={classNames('schubTeilnehmer' , 'schubNav')}>Teilnehmer</div>
+                                    <div className={classNames('schubFlag' , 'schubIcons')}><Flag /></div>
+                                    <div className={classNames('schubCloche' , 'schubIcons')}><Cloche /></div>
+                                    <div className={classNames(classes.drawerHeader , 'schubMenue')}>
+                                        <IconButton onClick={this.handleDrawerClose}>
+                                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                                        </IconButton>
+                                    </div>
                                 </div>
                                 <Divider />
                                 <Divider />

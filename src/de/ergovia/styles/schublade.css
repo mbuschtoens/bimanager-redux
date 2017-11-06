@@ -1,0 +1,33 @@
+.schubladenLeiste {
+    display: grid;
+    grid-template-columns: 30% 30% 10% 10% 20%;
+    grid-template-areas:
+            "schubGruppe schubTeilnehmer schubFlag schubCloche schubMenue"
+    ;
+}
+.schubNav {
+    text-transform: uppercase;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.54);
+    padding: 30px 15px 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.schubIcons {
+    padding: 10px 5px 10px;
+}
+.schubGruppe {
+    grid-area: schubGruppe;
+}
+.schubTeilnehmer {
+    grid-area: schubTeilnehmer;
+}
+.schubFlag {
+    grid-area: schubFlag;
+}
+.schubCloche {
+    grid-area: schubCloche;
+}
+.schubMenue {
+    grid-area: schubMenue;
+}
