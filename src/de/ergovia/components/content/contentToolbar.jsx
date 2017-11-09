@@ -22,9 +22,9 @@ const styles = (theme) => ({
     toolbar: {
         backgroundColor: theme.palette.primary[100],
         display: 'grid',
-        gridTemplateColumns: '8% 40% 24% 8.5% 12.5%',
+        gridTemplateColumns: '6% 47% 47%',
         gridTemplateRows: '100%',
-        gridTemplateAreas: '"button focus range placeholder reminder"'
+        gridTemplateAreas: '"placeholder focus range"'
     },
     formControlSelect: {
         '&:before': {
@@ -47,15 +47,6 @@ const styles = (theme) => ({
             },
         },
     },
-    contentShift: {
-        gridTemplateColumns: '45% 30% 4.5% 12.5%',
-        gridTemplateAreas: '"focus range placeholder reminder"',
-        marginLeft: 350,
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
     hide: {
         display: 'none',
     },
@@ -70,9 +61,6 @@ const styles = (theme) => ({
     focusSelect: {
         gridArea: 'focus',
         paddingRight: '30%'
-    },
-    focusShift: {
-        marginLeft: 25
     },
     rangeFrom: {
         gridArea: 'rangeFrom'
@@ -89,11 +77,15 @@ const styles = (theme) => ({
 class ContentToolbar extends React.Component {
 
     state = {
-        focus: 1
+        focus: ""
     };
 
     handleChange = name => event => {
-        this.setState({ [name]: event.target.value });
+        this.setState({[name]: event.target.value});
+
+        const group = this.props.data.find(group => group.id === event.target.value);
+
+        this.props.onChange(group ? group.participants : []);
     };
 
     constructor(props) {
@@ -106,12 +98,6 @@ class ContentToolbar extends React.Component {
             endDate: moment(),
             focuesInput: moment()
         };
-        this.data = [
-            {id:1, focus: 'Teilnehmergruppe AGH 01', reminder: { warn:4, error: 3} },
-            {id:2, focus: 'Teilnehmergruppe AGH 02', reminder: { warn:4, error: 3} },
-            {id:3, focus: 'Teilnehmergruppe AGH 03', reminder: { warn:4, error: 3} },
-            {id:4, focus: 'Teilnehmergruppe AGH 04', reminder: { warn:4, error: 3} }
-        ]
 
     }
 
@@ -120,19 +106,12 @@ class ContentToolbar extends React.Component {
 
         const { classes } = this.props;
 
-        return <Toolbar className={classNames(classes.toolbar, this.props.drawerState && classes.contentShift)}>
-            <IconButton color="contrast" aria-label="open drawer" className={classNames(classes.menuButton, this.props.drawerState && classes.hide)}
-                        onClick={() => {this.props.handleDrawerOpen()}}>
-                <MenuIcon />
-            </IconButton>
+        return <Toolbar disableGutters className={classNames(classes.toolbar)}>
 
-            <FormControl className={classNames(classes.formControl, classes.focusSelect, this.props.drawerState && classes.focusShift)}>
+            <FormControl className={classNames(classes.formControl, classes.focusSelect)}>
                 <Select className={classes.formControlSelect} displayEmpty value={this.state.focus} onChange={this.handleChange('focus')} input={<Input id="focus-select" />}>
-                    <MenuItem value="">
-                        <em>Gruppenauswahl</em>
-                    </MenuItem>
-                    {this.data.map(element => {
-                        return <MenuItem key={element.id} value={element.id}>{element.focus}</MenuItem>
+                    {this.props.data.map(element => {
+                        return <MenuItem key={element.id} value={element.id}>{element.group.name}</MenuItem>
                     })}
 
                 </Select>
@@ -142,13 +121,6 @@ class ContentToolbar extends React.Component {
                              endDate={this.state.endDate} onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
                              endDatePlaceholderText="bis"
                              focusedInput={this.state.focusedInput} onFocusChange={focusedInput => this.setState({ focusedInput })}/>
-
-            <div className={classes.reminder}>
-                <IconButton classes={{root: classes.reminderIcon}} disabled={true}><NotificationIcon /></IconButton>
-                <IconButton classes={{root: classes.reminderIcon}} disabled={true}><FlagIcon /></IconButton>
-            </div>
-
-
 
         </Toolbar>
 

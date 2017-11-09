@@ -3,7 +3,8 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import Theme from './de/ergovia/themes/theme'
 import Body from './de/ergovia/components/body/body'
 import MenuBar from './de/ergovia/components/menubar/menubar'
-import ContentSummary from './de/ergovia/components/content/contentSummary'
+import ContentWidget from './de/ergovia/components/content/contentWidget'
+import TodoWidget from './de/ergovia/components/todo/todoWidget'
 import { withTheme } from 'material-ui/styles';
 
 
@@ -16,6 +17,12 @@ class App extends React.Component {
         this.styles = {
             frame: {
                 backgroundColor: Theme.palette.secondary["A100"]
+            },
+            grid: {
+                display: 'grid',
+                gridTemplateRows: '10vh 90vh',
+                gridTemplateColumns: '5% 70% 20% 5%',
+                gridTemplateAreas: '"top top top top" "palceholder content todo placeholder"',
             }
 
         };
@@ -40,7 +47,10 @@ class App extends React.Component {
             <Body color={this.styles.frame.backgroundColor}>
             <MuiThemeProvider theme={Theme}>
                 <MenuBar title="Bildungsmanager" />
-                <ContentSummary/>
+                <div style={this.styles.grid}>
+                    <ContentWidget />
+                    <TodoWidget />
+                </div>
             </MuiThemeProvider>
             </Body>
 
