@@ -4,6 +4,7 @@ import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
 import List from 'material-ui/List';
 import { withStyles } from 'material-ui/styles';
+import moment from 'moment'
 
 import ContentDetail from './contentDetail'
 import ContentToolbar from './contentToolbar'
@@ -56,7 +57,7 @@ class ContentWidget extends React.Component {
                 group: {name: "Teilnehmergruppe AGH 01"},
                 participants: [{id: 1, focus: {vorname: "Stefan", nachname: "Dittmann"}, range: {from: moment(), to: moment()}, reminder: {ok: 100, warn: 1, error: 2}},
                     {id: 2, focus: {vorname: "Matthis", nachname: "Buschtöns"}, range: {from: moment(), to: moment()}, reminder: {ok: 100, warn: 0, error: 3}},
-                    {id: 3, focus: {vorname: "Merle", nachname: "Ehm"}, range: {from: moment(2017-01-01), to: moment()}, reminder: {ok: 100, warn: 3, error: 0}},
+                    {id: 3, focus: {vorname: "Merle", nachname: "Ehm"}, range: {from: moment('2017-01-01'), to: moment('2018-01-01')}, reminder: {ok: 100, warn: 3, error: 0}},
                     {id: 4, focus: {vorname: "Jan", nachname: "Hansen"}, range: {from: moment('2017-01-01'), to: moment('2018-01-01')}, reminder: {ok: 100, warn: 1, error: 0}},
                     {id: 5, focus: {vorname: "Theresa", nachname: "Lill"}, range: {from: moment('2017-01-01'), to: moment('2018-01-01')}, reminder: {ok: 100, warn: 1, error: 2}}]
             },{
