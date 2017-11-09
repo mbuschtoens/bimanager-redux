@@ -1,27 +1,28 @@
 import React from 'react';
-import Paper from 'material-ui/Paper'
-import Table, {
-    TableBody,
-    TableCell,
-    TableRow
-} from 'material-ui/Table';
-import Typography from 'material-ui/Typography';
 import classNames from 'classnames';
+import Paper from 'material-ui/Paper'
+import Divider from 'material-ui/Divider'
+import List from 'material-ui/List';
 import { withStyles } from 'material-ui/styles';
 
+
+import ContentDetail from './contentDetail'
 import ContextDrawer from './contextDrawer'
 import ContentToolbar from './contentToolbar'
+import ContentSummaryListItem from './contentListItem'
 
 const styles = (theme) => ({
 
     content: {
         width: '100%',
+        padding: 0,
         flexGrow: 1,
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
         overflow: 'scroll',
+        display: 'block',
         height: 'calc(100% - 56px)',
         [theme.breakpoints.up('sm')]: {
             content: {
@@ -37,29 +38,8 @@ const styles = (theme) => ({
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
-    },
-    menuButton: {
-        marginLeft: 12,
-        marginRight: 20,
-    },
-    tableCellFocus: {
-        padding: '4px 0px 4px 100px'
-    },
-    tableCellFocusVorname: {
-        display: 'inline-block',
-        paddingRight: '5px'
-    },
-    tableCellFocusNachname: {
-        display: 'inline-block',
-        paddingRight: '5px',
-        fontWeight: 'bold'
-    },
-    tableCellRange: {
-        padding: '4px 0 4px 0'
-    },
-    tableCellReminder: {
-        padding: 4
     }
+
 });
 
 class ContentSummary extends React.Component {
@@ -67,7 +47,7 @@ class ContentSummary extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {drawer: false};
+        this.state = {drawer: false, detail: false, detailName: ''};
         this.styles = {
             frame: {
                 position: 'relative',
@@ -94,19 +74,42 @@ class ContentSummary extends React.Component {
             {id: 7, focus: {vorname: "Kristina", nachname: "Orth"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 5, error: 0}},
             {id: 8, focus: {vorname: "Michael", nachname: "Hanse"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 1, error: 1}},
             {id: 9, focus: {vorname: "Jan-Philipp", nachname: "Rathje"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 2, error: 3}},
-            {id: 10, focus: {vorname: "Ralf", nachname: "Kohlgrüber"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}}
-
+            {id: 10, focus: {vorname: "Ralf", nachname: "Kohlgrüber"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 11, focus: {vorname: "Jens", nachname: "Buchloh"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 12, focus: {vorname: "Tom", nachname: "Bach"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 13, focus: {vorname: "Steffan", nachname: "Vosgerau"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 14, focus: {vorname: "Stefan", nachname: "Stepponat"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 15, focus: {vorname: "Alexander", nachname: "Grotegut"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 16, focus: {vorname: "Alexander", nachname: "Schnoor"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 17, focus: {vorname: "Prateek", nachname: "Bahtt"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 18, focus: {vorname: "Gunhild", nachname: "Grot"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 19, focus: {vorname: "Sayali", nachname: "Patkar"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 20, focus: {vorname: "Felix", nachname: "Braun"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 21, focus: {vorname: "Sascha", nachname: "Begier"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 22, focus: {vorname: "Chris", nachname: "Heinrichs"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 23, focus: {vorname: "Matthias", nachname: "Kirsch"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}},
+            {id: 24, focus: {vorname: "Andi", nachname: "Büker"}, range: "01.01.2018 - 01.01.2019", reminder: {warn: 0, error: 1}}
 
         ];
     }
 
-    handleDrawerOpen = () => {
+    handleDrawerOpen() {
         this.setState({ drawer: true });
     };
 
-    handleDrawerClose = () => {
+    handleDrawerClose() {
         this.setState({ drawer: false });
     };
+
+    handleDetailOpen(focus) {
+        this.setState({ detail: true });
+        this.setState({ detailName: `${focus.vorname} ${focus.nachname}`})
+    }
+
+    handleDetailClose() {
+        this.setState({ detail: false });
+    }
+
 
     render() {
 
@@ -116,33 +119,15 @@ class ContentSummary extends React.Component {
             <div style={this.styles.frame}>
                 <Paper style={this.styles.paper} position="fixed">
                         <ContentToolbar drawerState={this.state.drawer} handleDrawerOpen={() => {this.handleDrawerOpen()}}/>
+                        <Divider/>
                         <ContextDrawer drawerState={this.state.drawer} handleDrawerClose={() => {this.handleDrawerClose()}}/>
-                        <div className={classNames(classes.content, this.state.drawer && classes.contentShift)}>
-                            <Table>
-                                <TableBody>
+                        <ContentDetail name={this.state.detailName} detailState={this.state.detail} handleDetailClose={() => {this.handleDetailClose()}}/>
+                        <List className={classNames(classes.content, this.state.drawer && classes.contentShift)}>
 
                                     {this.data.map((element) => {
-
-                                        return <TableRow key={element.id}>
-                                            <TableCell classes={{paddingDefault: classes.tableCellFocus}}>
-                                                <Typography classes={{root: classes.tableCellFocusVorname}}>
-                                                    {element.focus.vorname}
-                                                </Typography>
-                                                <Typography classes={{root: classes.tableCellFocusNachname}}>
-                                                    {element.focus.nachname}
-                                                </Typography>
-                                            </TableCell>
-                                            <TableCell classes={{paddingDefault: classes.tableCellRange}}>{element.range}</TableCell>
-                                            <TableCell classes={{paddingDefault: classes.tableCellReminder}}>{element.reminder.warn}</TableCell>
-                                            <TableCell classes={{paddingDefault: classes.tableCellReminder}}>{element.reminder.error}</TableCell>
-                                        </TableRow>
-
+                                        return <ContentSummaryListItem key={element.id} element={element} handleDetailOpen={() => {this.handleDetailOpen(element.focus)}} drawerState={this.state.drawer}/>
                                     })}
-
-                                </TableBody>
-
-                            </Table>
-                        </div>
+                        </List>
                 </Paper>
             </div>
 

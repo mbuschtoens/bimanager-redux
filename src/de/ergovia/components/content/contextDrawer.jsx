@@ -19,6 +19,7 @@ const styles = (theme) => ({
         width: 350,
     },
     drawerHeader: {
+        backgroundColor: theme.palette.primary[100],
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',

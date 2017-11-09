@@ -6,6 +6,7 @@ import MenuBar from './de/ergovia/components/menubar/menubar'
 import ContentSummary from './de/ergovia/components/content/contentSummary'
 import { withTheme } from 'material-ui/styles';
 
+
 class App extends React.Component {
 
     constructor(props) {
