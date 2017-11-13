@@ -20,7 +20,7 @@ class AddGoal extends React.Component {
                         from: moment(),
                         to: moment()
                     },
-                    participantId: this.props.participant,
+                    participant: this.props.participant,
                     deadline: deadline.value ? deadline.value : moment()
                 }));
                 title.value = '';

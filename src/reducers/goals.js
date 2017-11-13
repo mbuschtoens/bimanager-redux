@@ -3,13 +3,13 @@ import moment from 'moment'
 import { ADD_GOAL, TOGGLE_GOAL, REMOVE_GOAL } from '../actions/types'
 
 const allGoals = [
-    {id:1, participantId: 1, title: 'one', text: 'first goal', range: {from: moment('2017-01-01'), to: moment('2018-01-01')}, deadline: moment('2017-10-31')},
-    {id:2, participantId: 1, title: 'two', text: 'second goal', range: {from: moment('2017-02-01'), to: moment('2018-04-30')}, deadline: moment('2017-10-31')},
-    {id:3, participantId: 1, title: 'three', text: 'third goal', range: {from: moment('2017-09-01'), to: moment('2018-08-31')}, deadline: moment('2017-10-31')},
-    {id:4, participantId: 2, title: 'four', text: 'fourth goal', range: {from: moment('2017-05-31'), to: moment('2017-10-31')}, deadline: moment('2017-10-10')},
-    {id:5, participantId: 2, title: 'five', text: 'fifth goal', range: {from: moment('2018-01-01'), to: moment('2018-01-01')}, deadline: moment('2017-10-31')},
-    {id:6, participantId: 3, title: 'six', text: 'sixth goal', range: {from: moment('2017-01-01'), to: moment('2018-01-01')}, deadline: moment('2017-10-31')},
-    {id:7, participantId: 4, title: 'seven', text: 'seventh goal', range: {from: moment('2017-01-01'), to: moment('2018-01-01')}, deadline: moment('2017-10-31')}
+    {id:1, participant: 1, title: 'First goal', text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.', range: {from: moment('2017-01-01'), to: moment('2018-01-01')}, deadline: moment('2017-10-31')},
+    {id:2, participant: 1, title: 'Goal two', text: 'At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', range: {from: moment('2017-02-01'), to: moment('2018-04-30')}, deadline: moment('2017-10-31')},
+    {id:3, participant: 1, title: 'The third goal', text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.', range: {from: moment('2017-09-01'), to: moment('2018-08-31')}, deadline: moment('2017-10-31')},
+    {id:4, participant: 2, title: 'No. 4 of the goals', text: 'At vero eos et accusam et justo duo dolores et ea rebum.', range: {from: moment('2017-05-31'), to: moment('2017-10-31')}, deadline: moment('2017-10-10')},
+    {id:5, participant: 2, title: 'Fifth goal in a row', text: 'Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', range: {from: moment('2018-01-01'), to: moment('2018-01-01')}, deadline: moment('2017-10-31')},
+    {id:6, participant: 3, title: 'Goal: 6', text: 'Lorem ipsum dolor sit amet', range: {from: moment('2017-01-01'), to: moment('2018-01-01')}, deadline: moment('2017-10-31')},
+    {id:7, participant: 4, title: 'Seventh goal', text: 'Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero.', range: {from: moment('2017-01-01'), to: moment('2018-01-01')}, deadline: moment('2017-10-31')}
 ];
 
 const goals = (state = allGoals, action) => {
@@ -25,7 +25,7 @@ const goals = (state = allGoals, action) => {
                     text: action.text,
                     deadline: action.deadline,
                     range: action.range,
-                    participantId: action.participantId,
+                    participant: action.participant,
                     completed: false,
                     archive: false
                 }

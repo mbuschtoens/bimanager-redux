@@ -1,4 +1,4 @@
-import { ACTIVE_FILTER, FILTER_NONE, FILTER_ACTIVE, FILTER_COMPLETED } from '../actions/types'
+import { ACTIVE_FILTER, FILTER_NONE } from '../actions/types'
 
 const activateFilter = (state = FILTER_NONE, action) => {
 

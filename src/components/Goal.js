@@ -14,11 +14,13 @@ class Goal extends React.Component {
                 <div style={{
                     textDecoration: this.props.completed ? 'line-through' : 'none'
                 }} onClick={this.props.onClick}>
-                    <p>{this.props.title} -> {this.props.text} deadline: {moment(this.props.deadline).format(fmt)}</p>
-                    <p>({this.props.range.from.format(fmt)} - {this.props.range.to.format(fmt)})</p>
+                    <h4>{this.props.title}</h4>
+                    <p>{this.props.text}</p>
+                    <h5>Range: {this.props.range.from.format(fmt)} - {this.props.range.to.format(fmt)}</h5>
+                    <h5>Deadline: {moment(this.props.deadline).format(fmt)}</h5>
                 </div>
-
                 <button onClick={this.props.onRemove}>delete</button>
+
             </li>
         )
 

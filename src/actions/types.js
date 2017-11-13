@@ -8,5 +8,4 @@ export const SELECT_PARTICIPANT = 'SELECT_PARTICIPANT';
 // filters for goals
 export const FILTER_NONE = 'FILTER_NONE';
 export const FILTER_COMPLETED = 'FILTER_COMPLETED';
-export const FILTER_ACTIVE = 'FILTER_ACTIVE';
 
