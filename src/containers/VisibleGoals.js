@@ -12,25 +12,28 @@ class VisibleGoals extends React.Component {
 
 }
 
-const getVisibleGoals = (goals, filter) => {
+const filterParticipant = (goals, participant) => {
+    return goals.filter(g => parseInt(g.participantId, 10) === parseInt(participant, 10))
+};
+
+const getVisibleGoals = (goals, filter, participant) => {
 
     let visibleGoals = [];
-
     switch (filter) {
         case FILTER_NONE:
-            visibleGoals = goals;
+            visibleGoals = filterParticipant(goals, participant);
             break;
 
         case FILTER_COMPLETED:
-            visibleGoals = goals.filter(g => g.completed);
+            visibleGoals = filterParticipant(goals, participant).filter(g => g.completed);
             break;
 
         case FILTER_ACTIVE:
-            visibleGoals = goals.filter(g => !g.completed);
+            visibleGoals = filterParticipant(goals, participant).filter(g => !g.completed);
             break;
 
         default:
-            visibleGoals = goals;
+            visibleGoals = filterParticipant(goals, participant);
             break;
     }
 
@@ -43,7 +46,7 @@ const mapDispatchToProps = ({
 });
 
 const mapStateToProps = state => ({
-    data: getVisibleGoals(state.goals.present, state.filter)
+    data: getVisibleGoals(state.goals.present, state.filter, state.selectedParticipant)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VisibleGoals)

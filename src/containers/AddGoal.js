@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import { connect } from 'react-redux'
 import { addGoal } from '../actions/actions'
 
@@ -15,7 +16,12 @@ class AddGoal extends React.Component {
                 this.props.dispatch(addGoal({
                     title: title.value,
                     text: text.value,
-                    deadline: deadline.value
+                    range: {
+                        from: moment(),
+                        to: moment()
+                    },
+                    participantId: this.props.participant,
+                    deadline: deadline.value ? deadline.value : moment()
                 }));
                 title.value = '';
                 text.value = '';
@@ -23,8 +29,8 @@ class AddGoal extends React.Component {
             }}>
                 <input ref={n => { title = n }} />
                 <input ref={n => { text = n }} />
-                <input ref={n => { deadline = n }} type="date"/>
-                <button type="submit">Ziel hinzufügen</button>
+                <input ref={n => { deadline = n }} type="date" defaultValue={moment()}/>
+                <button type="submit">Add Goal</button>
             </form>
         )
 
@@ -32,4 +38,8 @@ class AddGoal extends React.Component {
 
 }
 
-export default connect()(AddGoal)
+const mapStateToProps = state => ({
+    participant: state.selectedParticipant
+});
+
+export default connect(mapStateToProps)(AddGoal)

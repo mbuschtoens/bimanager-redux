@@ -8,8 +8,8 @@ class UndoRedo extends React.Component {
 
         return (
             <p>
-                <button onClick={this.props.onUndo} disabled={!this.props.canUndo}>Rückgängig</button>
-                <button onClick={this.props.onRedo} disabled={!this.props.canRedo}>Schritt vorwärts</button>
+                <button onClick={this.props.onUndo} disabled={!this.props.canUndo}>Undo</button>
+                <button onClick={this.props.onRedo} disabled={!this.props.canRedo}>Redo</button>
             </p>
         )
     }
