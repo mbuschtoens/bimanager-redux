@@ -3,6 +3,7 @@ export const ACTIVE_FILTER = 'ACTIVE_FILTER';
 export const ADD_GOAL = 'ADD_GOAL';
 export const TOGGLE_GOAL = 'TOGGLE_GOAL';
 export const REMOVE_GOAL = 'REMOVE_GOAL';
+export const GET_GOALS = 'GET_GOALS';
 export const SELECT_PARTICIPANT = 'SELECT_PARTICIPANT';
 
 // filters for goals

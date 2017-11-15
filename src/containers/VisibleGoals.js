@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { toggleGoal, removeGoal } from "../actions/actions";
-import { FILTER_NONE, FILTER_COMPLETED } from '../actions/types'
+import { FILTER_COMPLETED } from '../actions/types'
 import GoalsList from '../components/GoalsList'
 
 class VisibleGoals extends React.Component {
@@ -12,24 +12,18 @@ class VisibleGoals extends React.Component {
 
 }
 
-const filterParticipant = (goals, participant) => {
-    return goals.filter(g => parseInt(g.participant, 10) === parseInt(participant, 10))
-};
+const getVisibleGoals = (goals = [], filter) => {
 
-const getVisibleGoals = (goals, filter, participant) => {
+    let visibleGoals;
 
-    let visibleGoals = [];
     switch (filter) {
-        case FILTER_NONE:
-            visibleGoals = filterParticipant(goals, participant);
-            break;
 
         case FILTER_COMPLETED:
-            visibleGoals = filterParticipant(goals, participant).filter(g => g.completed);
+            visibleGoals = goals.filter(g => g.completed);
             break;
 
         default:
-            visibleGoals = filterParticipant(goals, participant);
+            visibleGoals = goals;
             break;
     }
 
@@ -42,7 +36,7 @@ const mapDispatchToProps = ({
 });
 
 const mapStateToProps = state => ({
-    data: getVisibleGoals(state.goals.present, state.filter, state.selectedParticipant)
+    data: getVisibleGoals(state.goals.present, state.filter)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VisibleGoals)

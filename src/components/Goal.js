@@ -16,7 +16,7 @@ class Goal extends React.Component {
                 }} onClick={this.props.onClick}>
                     <h4>{this.props.title}</h4>
                     <p>{this.props.text}</p>
-                    <h5>Range: {this.props.range.from.format(fmt)} - {this.props.range.to.format(fmt)}</h5>
+                    <h5>Range: {moment(this.props.rangeFrom).format(fmt)} - {moment(this.props.rangeTo).format(fmt)}</h5>
                     <h5>Deadline: {moment(this.props.deadline).format(fmt)}</h5>
                 </div>
                 <button onClick={this.props.onRemove}>delete</button>

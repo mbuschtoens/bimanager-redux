@@ -1,4 +1,4 @@
-import { SELECT_PARTICIPANT, ACTIVE_FILTER, ADD_GOAL, TOGGLE_GOAL, REMOVE_GOAL } from './types'
+import { SELECT_PARTICIPANT, ACTIVE_FILTER, ADD_GOAL, TOGGLE_GOAL, REMOVE_GOAL, GET_GOALS } from './types'
 
 let goalIdSequence = 8;
 
@@ -26,4 +26,9 @@ export const toggleGoal = (id) => ({
 export const removeGoal = (id) => ({
    type: REMOVE_GOAL,
     id
+});
+
+export const getGoals = (goals) => ({
+    type: GET_GOALS,
+    goals
 });

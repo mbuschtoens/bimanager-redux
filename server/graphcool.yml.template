@@ -1,0 +1,7 @@
+types: ./types.graphql
+permissions:
+  - operation: "*"
+
+# Add your API token from the grapcool console here
+#rootTokens:
+#  - "your token"
