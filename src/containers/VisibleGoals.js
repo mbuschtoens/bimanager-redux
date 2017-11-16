@@ -4,14 +4,6 @@ import { toggleGoal, removeGoal } from "../actions/actions";
 import { FILTER_COMPLETED } from '../actions/types'
 import GoalsList from '../components/GoalsList'
 
-class VisibleGoals extends React.Component {
-
-    render() {
-        return <GoalsList data={this.props.data} onClick={this.props.onGoalClick} onRemove={this.props.onGoalRemove} />
-    }
-
-}
-
 const getVisibleGoals = (goals = [], filter) => {
 
     let visibleGoals;
@@ -31,12 +23,12 @@ const getVisibleGoals = (goals = [], filter) => {
 };
 
 const mapDispatchToProps = ({
-    onGoalClick: toggleGoal,
-    onGoalRemove: removeGoal
+    onClick: toggleGoal,
+    onRemove: removeGoal
 });
 
 const mapStateToProps = state => ({
     data: getVisibleGoals(state.goals.present, state.filter)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(VisibleGoals)
+export default connect(mapStateToProps, mapDispatchToProps)(GoalsList)
