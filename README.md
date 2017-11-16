@@ -1,7 +1,7 @@
 # BiManager with Apollo
 This is a small frontend architecture prototype for our new project at ergovia. 
 I used [React](https://github.com/facebook/react) for the UI, [Redux](https://github.com/reactjs/redux) for statehandling and [Apollo](https://github.com/apollographql) for backend-communication via GraphQL. 
-My backend is a [Graphcool](https://www.graph.cool/) service 
+My backend is a [Graphcool](https://www.graph.cool/) service. 
 
 ## Getting started
 First of all install the required node modules with
@@ -18,6 +18,7 @@ Next open the `src/index.js` and copy your URL to line 14.
 Now you should be able to run the prototype with 
 `npm start`
 
-You won't see any data, because your graphcool-backend is empty and atm it isn't possible to use the 'Add Goal'-function 
-in a 'persistent way' so you have to add your data in the [Graphcool Console](https://console.graph.cool/) manually. I will provide the 
-add-feature as soon as I can.
+I finished the 'Add Goal' feature so from now on it is possible to save your Goals on the server. For those who haven't created
+participants yet I added a `data-importer.js` to import default participant data.
+Be sure that you have at least `node 8` installed. `cd` into `/server` and edit the `data-importer.js`. Paste the `Simple API` into line 5 and exit.
+Now you can `node data-importer`. 

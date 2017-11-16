@@ -4,7 +4,7 @@ import { selectParticipant, getGoals } from '../actions/actions'
 import { compose, graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-const GET_ALL_PARTICIPANTS = gql`query getParticipants {
+export const GET_ALL_PARTICIPANTS = gql`query getParticipants {
     allParticipants { id surname lastname goals { id title text rangeFrom rangeTo completed archive } }
 }`;
 

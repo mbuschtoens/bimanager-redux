@@ -11,7 +11,7 @@ import reducer from './reducers/reducer'
 
 const store = createStore(reducer),
     client = new ApolloClient({
-        link: new HttpLink({ uri: 'https://simple-api-url-here' }),
+        link: new HttpLink({ uri: 'https://api.graph.cool/simple/v1/cja0wgx7q1g9201306evlw26t' }),
         cache: new InMemoryCache()
     });
 
