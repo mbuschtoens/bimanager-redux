@@ -1,0 +1,6 @@
+types: ./types.graphql
+permissions:
+  - operation: "*"
+
+#rootTokens:
+#  - "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTA2MDI4NjYsImNsaWVudElkIjoiY2o5eWx4eXU1N3F3MDAxOTg1ajg1bTJobyJ9.NwgtD5Y8MN79Vcq6jqAHzMS2UwCh0pcoKc6zpE1CtNs"

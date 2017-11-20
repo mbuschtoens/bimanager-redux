@@ -1,0 +1,17 @@
+type Goal @model {
+  id: ID! @isUnique
+  title: String!
+  text: String
+  rangeFrom: DateTime
+  rangeTo: DateTime
+  completed: Boolean! @defaultValue(value: false)
+  archive: Boolean! @defaultValue(value: false)
+  participant: Participant @relation(name: "GoalsOnParticipant")
+}
+
+type Participant @model {
+  id: ID! @isUnique
+  lastname: String!
+  surname: String
+  goals: [Goal!]! @relation(name: "GoalsOnParticipant")
+}
