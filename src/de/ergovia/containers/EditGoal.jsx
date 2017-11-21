@@ -30,11 +30,16 @@ const withGoalCreation = graphql(CREATE_GOAL, {
 
     props: ({ownProps, mutate}) => ({
         submit: ({id, title, text, rangeFrom, rangeTo, completed, participant}) => {
+            console.log(ownProps.range.start);
+            console.log(ownProps.range.end);
             return mutate({
                 variables: {
                     id, title, text, rangeFrom, rangeTo, completed, participant
                 },
-                refetchQueries: [{query: GET_GOALS, variables: {participant}}, {query: GET_PARTICIPANTS, variables: { start: ownProps.range.start, end: ownProps.range.end }}]
+                refetchQueries: [
+                    {query: GET_GOALS, variables: { participant, start: ownProps.range.start, end: ownProps.range.end }},
+                    {query: GET_PARTICIPANTS, variables: { start: ownProps.range.start, end: ownProps.range.end }}
+                ]
             });
         }
     })
@@ -52,10 +57,13 @@ const mapDispatchToProps = ({
     changeCompleted: editGoalCompletedChanged
 });
 
-const mapStateTopProps = state => ({
-    participant: state.views.participant,
-    goal: state.goals.filter(g => g.id === state.views.goal)[0],
-    range: state.range
-});
+const mapStateTopProps = state => {
+    console.log(state);
+    return ({
+        participant: state.views.participant,
+        goal: state.goals.filter(g => g.id === state.views.goal)[0],
+        range: state.range
+    });
+};
 
 export default compose(connect(mapStateTopProps, mapDispatchToProps), withGoalCreation)(GoalForm)
