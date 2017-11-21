@@ -1,7 +1,9 @@
 import React from 'react';
 import VisibleParticipants from '../containers/VisibleParticipants';
 import VisibleGoals from '../containers/VisibleGoals';
-import EditableGoal from '../containers/EditableGoal';
+import EditGoal from '../containers/EditGoal';
+import AddGoal from '../containers/AddGoal';
+import {SHOW_CREATE_FORM, SHOW_EDIT_FORM, SHOW_GOAL_LIST} from "../actions/types";
 import { connect } from 'react-redux'
 
 
@@ -22,12 +24,31 @@ class App extends React.Component {
 
     render() {
 
-        if (this.props.editMode) {
+        if (this.props.visibleView.type === SHOW_EDIT_FORM) {
             return (
                 <div style={this.styles.grid}>
                     <VisibleParticipants />
                     <VisibleGoals />
-                    <EditableGoal />
+                    <EditGoal />
+                </div>
+
+            );
+
+        } else if (this.props.visibleView.type === SHOW_CREATE_FORM) {
+            return (
+                <div style={this.styles.grid}>
+                    <VisibleParticipants />
+                    <VisibleGoals />
+                    <AddGoal />
+                </div>
+
+            );
+
+        } else if (this.props.visibleView.type === SHOW_GOAL_LIST) {
+            return (
+                <div style={this.styles.grid}>
+                    <VisibleParticipants />
+                    <VisibleGoals />
                 </div>
 
             );
@@ -36,7 +57,6 @@ class App extends React.Component {
             return (
                 <div style={this.styles.grid}>
                     <VisibleParticipants />
-                    <VisibleGoals />
                 </div>
 
             );
@@ -47,7 +67,7 @@ class App extends React.Component {
 }
 
 const mapStateTopProps = state => ({
-    editMode: !!state.editGoal,
+    visibleView: state.views
 });
 
 export default connect(mapStateTopProps)(App)

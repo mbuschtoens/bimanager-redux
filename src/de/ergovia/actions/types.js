@@ -1,20 +1,28 @@
-// action types
+// actions für den view state
+export const SHOW_CREATE_FORM = 'SHOW_CREATE_FORM';
+export const SHOW_EDIT_FORM = 'SHOW_EDIT_FORM';
+export const SHOW_GOAL_LIST = 'SHOW_GOAL_LIST';
+export const SHOW_PARTICIPANT_LIST = 'SHOW_PARTICIPANT_LIST';
 export const ACTIVE_FILTER = 'ACTIVE_FILTER';
 
+//
 export const ADD_GOAL = 'ADD_GOAL';
 export const GET_GOALS = 'GET_GOALS';
+export const REMOVE_GOAL = 'REMOVE_GOAL';
 
-export const EDIT_GOAL = 'EDIT_GOAL';
+// actions für from-inputs
 export const EDIT_GOAL_TITLE_CHANGED = 'EDIT_GOAL_TITLE_CHANGED';
 export const EDIT_GOAL_TEXT_CHANGED = 'EDIT_GOAL_TEXT_CHANGED';
 export const EDIT_GOAL_RANGE_FROM_CHANGED = 'EDIT_GOAL_RANGE_FROM_CHANGED';
 export const EDIT_GOAL_RANGE_TO_CHANGED = 'EDIT_GOAL_RANGE_TO_CHANGED';
 export const EDIT_GOAL_COMPLETED_CHANGED = 'EDIT_GOAL_COMPLETED_CHANGED';
-export const REMOVE_GOAL = 'REMOVE_GOAL';
 
-export const GET_PARTICIPANTS = 'GET_PARTICIPANTS';
-export const SELECT_PARTICIPANT = 'SELECT_PARTICIPANT';
 
-// filters for goals
+// filtertypen
 export const FILTER_NONE = 'FILTER_NONE';
 export const FILTER_COMPLETED = 'FILTER_COMPLETED';
+export const FILTER_UNCOMPLETED = 'FILTER_UNCOMPLETED';
+
+// zeitraum
+export const CHANGE_DATE_RANGE_START = 'CHANGE_DATE_RANGE_START';
+export const CHANGE_DATE_RANGE_END = 'CHANGE_DATE_RANGE_END';

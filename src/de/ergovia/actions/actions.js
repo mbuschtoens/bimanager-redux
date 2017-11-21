@@ -1,32 +1,67 @@
-import {SELECT_PARTICIPANT, ACTIVE_FILTER, ADD_GOAL, EDIT_GOAL, EDIT_GOAL_TITLE_CHANGED, EDIT_GOAL_TEXT_CHANGED, EDIT_GOAL_RANGE_FROM_CHANGED, EDIT_GOAL_RANGE_TO_CHANGED,
-    EDIT_GOAL_COMPLETED_CHANGED, REMOVE_GOAL, GET_GOALS, GET_PARTICIPANTS} from './types'
+import moment from 'moment'
+import {
+    ACTIVE_FILTER,
+    ADD_GOAL,
+    EDIT_GOAL_COMPLETED_CHANGED,
+    EDIT_GOAL_RANGE_FROM_CHANGED,
+    EDIT_GOAL_RANGE_TO_CHANGED,
+    EDIT_GOAL_TEXT_CHANGED,
+    EDIT_GOAL_TITLE_CHANGED,
+    GET_GOALS,
+    REMOVE_GOAL,
+    SHOW_CREATE_FORM,
+    SHOW_EDIT_FORM,
+    SHOW_GOAL_LIST,
+    SHOW_PARTICIPANT_LIST,
+    CHANGE_DATE_RANGE_START,
+    CHANGE_DATE_RANGE_END
+} from './types'
 
-let goalIdSequence = 8;
+const fmt = 'YYYY-MM-DD';
 
-export const getParticipants = (participants) => ({
-    type: GET_PARTICIPANTS,
-    participants
-});
-
-export const selectParticipant = (id) => ({
-    type: SELECT_PARTICIPANT,
-    id
-});
-
-export const addFilter = (filter) => ({
+export const activateFilter = (filter) => ({
     type: ACTIVE_FILTER,
     filter
 });
 
-export const addGoal = (goal) => ({
-    type: ADD_GOAL,
-    id: goalIdSequence++,
-    ...goal
+export const changeDateRangeStart = (start) => ({
+    type: CHANGE_DATE_RANGE_START,
+    start
 });
 
-export const editGoal = (id) => ({
-    type: EDIT_GOAL,
-    id
+export const changeDateRangeEnd = (end) => ({
+    type: CHANGE_DATE_RANGE_END,
+    end
+});
+
+export const addGoal = (participant) => ({
+    type: ADD_GOAL,
+    id: 'created',
+    rangeFrom: moment().format(fmt),
+    rangeTo: moment().format(fmt),
+    completed: false,
+    archive: false,
+    participant
+});
+
+export const showParticipantList = () => ({
+    type: SHOW_PARTICIPANT_LIST
+});
+
+export const showGoalList = (participant) => ({
+    type: SHOW_GOAL_LIST,
+    participant
+});
+
+export const showCreateForm = (participant) => ({
+    type: SHOW_CREATE_FORM,
+    id: 'created',
+    participant
+});
+
+export const showEditForm = (id, participant) => ({
+    type: SHOW_EDIT_FORM,
+    id, participant
 });
 
 export const editGoalTitleChanged = (id, title) => ({

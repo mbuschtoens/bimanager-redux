@@ -9,7 +9,7 @@ import { ApolloProvider } from 'react-apollo';
 import App from './de/ergovia/components/App'
 import reducer from './de/ergovia/reducers/reducer'
 
-const store = createStore(reducer),
+const store = createStore(reducer, /* preloadedState, */ window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()),
     client = new ApolloClient({
         link: new HttpLink({ uri: 'https://api.graph.cool/simple/v1/cja80vjdp2e4z01728tlw4nle' }),
         cache: new InMemoryCache()

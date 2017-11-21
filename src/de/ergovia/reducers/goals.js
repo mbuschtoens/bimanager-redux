@@ -18,17 +18,15 @@ const goals = (state = [], action) => {
             ];
 
         case ADD_GOAL:
-
             return [
                 ...state,
                 {
-                    title: action.title,
-                    text: action.text,
+                    id: action.id,
                     rangeFrom: action.rangeFrom,
                     rangeTo: action.rangeTo,
                     participant: action.participant,
                     completed: action.completed,
-                    archive: false
+                    archive: action.archive
                 }
             ];
 

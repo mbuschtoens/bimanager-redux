@@ -1,6 +1,6 @@
 import { ACTIVE_FILTER, FILTER_NONE } from '../actions/types'
 
-const activateFilter = (state = FILTER_NONE, action) => {
+const activeFilter = (state = FILTER_NONE, action) => {
 
     switch (action.type) {
 
@@ -14,4 +14,4 @@ const activateFilter = (state = FILTER_NONE, action) => {
 
 };
 
-export default activateFilter
+export default activeFilter

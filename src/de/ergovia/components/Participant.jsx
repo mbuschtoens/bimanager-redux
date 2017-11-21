@@ -8,15 +8,28 @@ import NotificationIcon from 'material-ui-icons/Notifications';
 class Participant extends React.Component {
 
     calculateGoals(goals) {
-        return goals.size > 4
+        return goals.length >= 5
     }
 
     calculateReminder(goals) {
         // zwei Wochen bevor ein Ziel erreicht werden sollte besteht Handlungsbedarf
-        return goals.filter(g => moment(g.rangeTo).isSameOrAfter(moment().add(14, 'days')) && !g.completed).length > 0
+        return goals.filter(g => {
+            if (moment(g.rangeTo).isBefore(moment().add(7, 'days'))) {
+                return !g.completed;
+            }
+            if (moment(g.rangeTo).isAfter(moment().add(7, 'days'))) {
+                return false;
+            }
+            return false;
+
+        })
     }
 
     render() {
+
+        const countReminder = this.calculateReminder(this.props.data.goals).length,
+            noActionNeeded = countReminder  === 0,
+            goalCount = this.props.data.goals.length >= 5 ? "(/)" : `(${this.props.data.goals.length}/5)`;
 
         return <li id={this.props.data.id} onClick={() => {
             this.props.onClick(this.props.data.id)
@@ -28,9 +41,11 @@ class Participant extends React.Component {
                 <IconButton disabled={this.calculateGoals(this.props.data.goals)}>
                     <FlagIcon/>
                 </IconButton>
-                <IconButton disabled={this.calculateReminder(this.props.data.goals)}>
+                {goalCount}
+                <IconButton disabled={noActionNeeded}>
                     <NotificationIcon/>
                 </IconButton>
+                ({countReminder})
             </div>
         </li>
 

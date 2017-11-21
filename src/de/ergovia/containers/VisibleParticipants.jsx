@@ -1,20 +1,45 @@
-import React from 'react'
-import { connect, dispatch } from 'react-redux'
-import { getParticipants, selectParticipant } from '../actions/actions';
+import { connect } from 'react-redux'
+import { showGoalList, changeDateRangeStart, changeDateRangeEnd } from '../actions/actions';
 import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Participant from '../components/Participant';
+import ParticipantList from '../components/ParticipantList';
 
-export const GET_PARTICIPANTS = gql`query getParticipants {
-    allParticipants {
-        id surname lastname goals {
-            id rangeTo
+export const GET_PARTICIPANTS = gql`
+    query getParticipantsWithGoalsInRange($start: DateTime!, $end: DateTime!) {
+        allParticipants {
+            id surname lastname goals(filter: {
+                OR: [{
+                    rangeFrom_gte: $start
+                    rangeTo_lte: $end
+                },{
+                    AND:[{
+                        rangeFrom_gte: $start
+                        rangeTo_gte: $end
+                    }, {
+                        rangeFrom_lte: $end
+                    }]
+                },{
+                    AND: [{
+                        rangeFrom_lte: $start
+                        rangeTo_lte: $end
+                    } , {
+                        rangeTo_gte: $start
+                    }]
+
+                },{
+                    rangeFrom_lte: $start
+                    rangeTo_gte: $end
+                }]
+
+            }) {
+                id rangeFrom rangeTo completed
+            }
         }
     }
-}`;
+`;
 
 const withParticipants = graphql(GET_PARTICIPANTS, {
-
+    options: (params) => ({ variables: { start: params.range.start, end: params.range.end } }),
     props: ({ ownProps, data}) => {
 
         if (data.loading) return { participantsLoading: true, participants: [] } ;
@@ -30,34 +55,14 @@ const withParticipants = graphql(GET_PARTICIPANTS, {
 
 });
 
-class VisibleParticipants extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.styles = {
-            grid: {
-                gridArea: 'participants',
-            }
-        };
-    }
-
-
-    render() {
-        return (
-            <ul style={this.styles}>
-                {this.props.participants.map(p => <Participant key={p.id} data={p} onClick={this.props.onSelect}/>)}
-            </ul>
-
-        )
-    }
-
-}
-
 const mapDispatchToProps = {
-    onSelect: selectParticipant,
-    showParticipants: getParticipants
+    onClick: showGoalList,
+    changeRangeStart: changeDateRangeStart,
+    changeRangeEnd: changeDateRangeEnd
 };
 
-const mapStateTopProps = state => ({});
+const mapStateTopProps = state => ({
+    range: state.range
+});
 
-export default compose(connect(mapStateTopProps, mapDispatchToProps), withParticipants)(VisibleParticipants)
+export default compose(connect(mapStateTopProps, mapDispatchToProps), withParticipants)(ParticipantList)
