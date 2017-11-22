@@ -3,8 +3,6 @@ import VisibleParticipants from '../containers/VisibleParticipants';
 import VisibleGoals from '../containers/VisibleGoals';
 import EditGoal from '../containers/EditGoal';
 import AddGoal from '../containers/AddGoal';
-import Authenticator from '../containers/Authenticator'
-
 import {SHOW_CREATE_FORM, SHOW_EDIT_FORM, SHOW_GOAL_LIST} from "../actions/types";
 import { connect } from 'react-redux'
 
@@ -24,52 +22,45 @@ class App extends React.Component {
         };
     }
 
-
     render() {
 
-        return <Authenticator content={() => {
+        if (this.props.visibleView.type === SHOW_EDIT_FORM) {
+            return (
+                <div style={this.styles.grid}>
+                    <VisibleParticipants />
+                    <VisibleGoals />
+                    <EditGoal />
+                </div>
 
-            if (this.props.visibleView.type === SHOW_EDIT_FORM) {
-                return (
-                    <div style={this.styles.grid}>
-                        <VisibleParticipants />
-                        <VisibleGoals />
-                        <EditGoal />
-                    </div>
+            );
 
-                );
+        } else if (this.props.visibleView.type === SHOW_CREATE_FORM) {
+            return (
+                <div style={this.styles.grid}>
+                    <VisibleParticipants />
+                    <VisibleGoals />
+                    <AddGoal />
+                </div>
 
-            } else if (this.props.visibleView.type === SHOW_CREATE_FORM) {
-                return (
-                    <div style={this.styles.grid}>
-                        <VisibleParticipants />
-                        <VisibleGoals />
-                        <AddGoal />
-                    </div>
+            );
 
-                );
+        } else if (this.props.visibleView.type === SHOW_GOAL_LIST) {
+            return (
+                <div style={this.styles.grid}>
+                    <VisibleParticipants />
+                    <VisibleGoals />
+                </div>
 
-            } else if (this.props.visibleView.type === SHOW_GOAL_LIST) {
-                return (
-                    <div style={this.styles.grid}>
-                        <VisibleParticipants />
-                        <VisibleGoals />
-                    </div>
+            );
 
-                );
+        } else {
+            return (
+                <div style={this.styles.grid}>
+                    <VisibleParticipants />
+                </div>
 
-            } else {
-                return (
-                    <div style={this.styles.grid}>
-                        <VisibleParticipants />
-                    </div>
-
-                );
-            }
-
-        }}/>
-
-
+            );
+        }
 
 
     }
