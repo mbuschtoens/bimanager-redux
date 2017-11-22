@@ -26,3 +26,8 @@ export const FILTER_UNCOMPLETED = 'FILTER_UNCOMPLETED';
 // zeitraum
 export const CHANGE_DATE_RANGE_START = 'CHANGE_DATE_RANGE_START';
 export const CHANGE_DATE_RANGE_END = 'CHANGE_DATE_RANGE_END';
+
+// authentication
+export const LOGIN_REQUESTED = 'LOGIN_REQUESTED';
+export const LOGIN_SUCCEEDED = 'LOGIN_SUCCEEDED';
+export const LOGOUT = 'LOGOUT';

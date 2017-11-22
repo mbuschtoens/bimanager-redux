@@ -2,19 +2,22 @@ import moment from 'moment'
 import {
     ACTIVE_FILTER,
     ADD_GOAL,
+    CHANGE_DATE_RANGE_END,
+    CHANGE_DATE_RANGE_START,
     EDIT_GOAL_COMPLETED_CHANGED,
     EDIT_GOAL_RANGE_FROM_CHANGED,
     EDIT_GOAL_RANGE_TO_CHANGED,
     EDIT_GOAL_TEXT_CHANGED,
     EDIT_GOAL_TITLE_CHANGED,
     GET_GOALS,
+    LOGIN_REQUESTED,
+    LOGIN_SUCCEEDED,
+    LOGOUT,
     REMOVE_GOAL,
     SHOW_CREATE_FORM,
     SHOW_EDIT_FORM,
     SHOW_GOAL_LIST,
-    SHOW_PARTICIPANT_LIST,
-    CHANGE_DATE_RANGE_START,
-    CHANGE_DATE_RANGE_END
+    SHOW_PARTICIPANT_LIST
 } from './types'
 
 const fmt = 'YYYY-MM-DD';
@@ -98,3 +101,53 @@ export const getGoals = (goals) => ({
     type: GET_GOALS,
     goals
 });
+
+const requestLogin = () => ({
+    type: LOGIN_REQUESTED,
+    requesting: true
+});
+
+const loginSuccess = (jwt) => ({
+    type: LOGIN_SUCCEEDED,
+    requesting: false,
+    user: jwt.token.split('.').slice(1, 2).map(atob).map(JSON.parse)[0],
+    jwt: jwt
+});
+
+
+const logout = () => ({
+    type: LOGOUT,
+    requesting: false
+});
+
+
+export const login = () => {
+
+    return dispatch => {
+
+        dispatch(requestLogin());
+
+        return fetch("http://agil822.rita.ergovia.dom/stepnova/system/jwt/token.do", {
+            mode: 'cors',
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(json => dispatch(json ? loginSuccess(json) : logout()));
+
+    };
+};
+
+export const refreshLogin = () => {
+
+    return dispatch => {
+
+        return fetch("http://agil822.rita.ergovia.dom/stepnova/system/jwt/token.do", {
+            mode: 'cors',
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(json => dispatch(json ? loginSuccess(json) : logout()));
+
+    }
+
+};
