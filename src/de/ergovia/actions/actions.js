@@ -127,7 +127,7 @@ export const login = () => {
 
         dispatch(requestLogin());
 
-        return fetch("http://agil822.rita.ergovia.dom/stepnova/system/jwt/token.do", {
+        return fetch("http://10.1.11.69:8080/stepnova/system/jwt/token.do", {
             mode: 'cors',
             credentials: 'include'
         })
@@ -140,7 +140,7 @@ export const login = () => {
 export const refreshLogin = () => {
     return dispatch => {
 
-        return fetch("http://agil822.rita.ergovia.dom/stepnova/system/jwt/token.do", {
+        return fetch("http://10.1.11.69:8080/stepnova/system/jwt/token.do", {
             mode: 'cors',
             credentials: 'include'
         })

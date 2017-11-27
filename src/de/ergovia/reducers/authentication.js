@@ -13,6 +13,7 @@ const user = (state = { type: LOGOUT, data: null, requesting: false}, action) =>
             };
 
         case LOGIN_SUCCEEDED:
+            localStorage.setItem("token", action.jwt.token);
             return {
                 type: action.type,
                 data: action.user,
@@ -21,6 +22,7 @@ const user = (state = { type: LOGOUT, data: null, requesting: false}, action) =>
             };
 
         case LOGOUT:
+            localStorage.removeItem("token");
             return {
                 type: action.type,
                 data: null,
