@@ -98,3 +98,52 @@ export const getGoals = (goals) => ({
     type: GET_GOALS,
     goals
 });
+
+const requestLogin = () => ({
+    type: LOGIN_REQUESTED,
+    requesting: true
+});
+
+const loginSuccess = (jwt) => ({
+    type: LOGIN_SUCCEEDED,
+    requesting: false,
+    user: jwt.token.split('.').slice(1, 2).map(atob).map(JSON.parse)[0],
+    jwt: jwt
+});
+
+
+const logout = () => ({
+    type: LOGOUT,
+    requesting: false
+});
+
+
+export const login = () => {
+
+    return dispatch => {
+
+        dispatch(requestLogin());
+
+        return fetch("http://agil822.rita.ergovia.dom/stepnova/system/jwt/token.do", {
+            mode: 'cors',
+            credentials: 'include'
+        })
+            .then(response => response.ok ? response.json() : '')
+            .then(json => dispatch(json ? loginSuccess(json) : logout()));
+
+    };
+};
+
+export const refreshLogin = () => {
+    return dispatch => {
+
+        return fetch("http://agil822.rita.ergovia.dom/stepnova/system/jwt/token.do", {
+            mode: 'cors',
+            credentials: 'include'
+        })
+            .then(response => response.ok ? response.json() : '')
+            .then(json => dispatch(json ? loginSuccess(json) : logout()));
+
+    }
+
+};
