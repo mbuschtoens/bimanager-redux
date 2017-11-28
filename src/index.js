@@ -6,6 +6,7 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo';
+
 import thunkMiddleware from 'redux-thunk';
 
 import App from './de/ergovia/components/App'

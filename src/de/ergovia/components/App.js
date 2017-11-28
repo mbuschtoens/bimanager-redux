@@ -3,7 +3,8 @@ import VisibleParticipants from '../containers/VisibleParticipants';
 import VisibleGoals from '../containers/VisibleGoals';
 import EditGoal from '../containers/EditGoal';
 import AddGoal from '../containers/AddGoal';
-import Authenticator from '../containers/Authenticator'
+import Authenticator from '../containers/Authenticator';
+import AppBar from './AppBar';
 
 import {SHOW_CREATE_FORM, SHOW_EDIT_FORM, SHOW_GOAL_LIST} from "../actions/types";
 import { connect } from 'react-redux'
@@ -17,7 +18,7 @@ class App extends React.Component {
             grid: {
                 display: 'grid',
                 gridTemplateRows: '100vh',
-                gridTemplateColumns: '33% 33% 33%',
+                gridTemplateColumns: '400px 400px 400px',
                 gridTemplateAreas: '"participants goals edit"',
             }
 
@@ -27,50 +28,51 @@ class App extends React.Component {
 
     render() {
 
-        return <Authenticator content={() => {
-
-            if (this.props.visibleView.type === SHOW_EDIT_FORM) {
-                return (
+        if (this.props.visibleView.type === SHOW_EDIT_FORM) {
+            return (
+                <div>
+                    <AppBar/>
                     <div style={this.styles.grid}>
                         <VisibleParticipants />
                         <VisibleGoals />
                         <EditGoal />
                     </div>
+                </div>
+            );
 
-                );
-
-            } else if (this.props.visibleView.type === SHOW_CREATE_FORM) {
-                return (
+        } else if (this.props.visibleView.type === SHOW_CREATE_FORM) {
+            return (
+                <div>
+                    <AppBar/>
                     <div style={this.styles.grid}>
                         <VisibleParticipants />
                         <VisibleGoals />
                         <AddGoal />
                     </div>
+                </div>
+            );
 
-                );
-
-            } else if (this.props.visibleView.type === SHOW_GOAL_LIST) {
-                return (
+        } else if (this.props.visibleView.type === SHOW_GOAL_LIST) {
+            return (
+                <div>
+                    <AppBar/>
                     <div style={this.styles.grid}>
                         <VisibleParticipants />
                         <VisibleGoals />
                     </div>
+                </div>
+            );
 
-                );
-
-            } else {
-                return (
+        } else {
+            return (
+                <div>
+                    <AppBar/>
                     <div style={this.styles.grid}>
                         <VisibleParticipants />
                     </div>
-
-                );
-            }
-
-        }}/>
-
-
-
+                </div>
+            );
+        }
 
     }
 }
