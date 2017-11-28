@@ -127,25 +127,24 @@ export const login = () => {
 
         dispatch(requestLogin());
 
-        return fetch("http://agil822.rita.ergovia.dom/stepnova/system/jwt/token.do", {
+        return fetch("http://10.1.11.69:8080/stepnova/system/jwt/token.do", {
             mode: 'cors',
             credentials: 'include'
         })
-            .then(response => response.json())
+            .then(response => response.ok ? response.json() : '')
             .then(json => dispatch(json ? loginSuccess(json) : logout()));
 
     };
 };
 
 export const refreshLogin = () => {
-
     return dispatch => {
 
-        return fetch("http://agil822.rita.ergovia.dom/stepnova/system/jwt/token.do", {
+        return fetch("http://10.1.11.69:8080/stepnova/system/jwt/token.do", {
             mode: 'cors',
             credentials: 'include'
         })
-            .then(response => response.json())
+            .then(response => response.ok ? response.json() : '')
             .then(json => dispatch(json ? loginSuccess(json) : logout()));
 
     }

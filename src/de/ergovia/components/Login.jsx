@@ -18,7 +18,7 @@ class Login extends React.Component {
         }
 
 
-        setTimeout(this.props.refreshLogin, tokenRefresh);
+        setInterval(this.props.refreshLogin, tokenRefresh);
     }
 
     render() {
@@ -26,7 +26,7 @@ class Login extends React.Component {
         const loggedIn = () => {
 
             return <div>
-                <p>Herzlich Willkommen {this.props.user.data}</p>
+                <p>Herzlich Willkommen {this.props.user.data.username}</p>
                 {this.props.content()}
             </div>
 

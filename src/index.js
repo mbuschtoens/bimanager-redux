@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { ApolloClient } from 'apollo-client'
-import { HttpLink } from 'apollo-link-http'
+import { setContext } from 'apollo-link-context'
+import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo';
 
@@ -12,9 +13,27 @@ import thunkMiddleware from 'redux-thunk';
 import App from './de/ergovia/components/App'
 import reducer from './de/ergovia/reducers/reducer'
 
+const httpLink = createHttpLink({
+   uri: 'http://10.1.11.69:8090/graphql'
+});
+
+const authLink = setContext((_, { headers }) => {
+
+
+    const token = localStorage.getItem('token');
+
+    return {
+        headers: {
+            ...headers,
+            "X-JWT": token
+        }
+    }
+
+});
+
 const store = createStore(reducer, applyMiddleware(thunkMiddleware)),
     client = new ApolloClient({
-        link: new HttpLink({ uri: 'https://api.graph.cool/simple/v1/cja80vjdp2e4z01728tlw4nle' }),
+        link: authLink.concat(httpLink),
         cache: new InMemoryCache()
     });
 
