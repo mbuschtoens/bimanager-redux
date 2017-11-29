@@ -4,7 +4,7 @@ import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import ParticipantList from '../components/ParticipantList';
 
-export const GET_PARTICIPANTS = gql`
+export const GET_PARTICIPANTS = gql`    
     query getParticipantsWithGoalsInRange($start: DateTime!, $end: DateTime!) {
         allParticipants {
             id surname lastname goals(filter: {

@@ -1,5 +1,7 @@
 import React from 'react'
 import moment from 'moment'
+import Typography from 'material-ui/Typography';
+
 const fmt = 'DD.MM.YYYY';
 
 class Goal extends React.Component {
@@ -23,10 +25,10 @@ class Goal extends React.Component {
         };
 
         return (
-            <li style={{ borderBottom: '1px solid gray' }}>
+            <li>
                 <div style={{ backgroundColor: colorCode() }} onClick={this.props.onClick}>
-                    <h4 style={{ display: "inline-block", textDecoration: this.props.completed ? 'line-through' : 'none'}}>{this.props.title}</h4>
-                    <h5 style={{ display: "inline-block", float: 'right' }}>{moment(this.props.rangeTo).format(fmt)}</h5>
+                    <Typography style={{ display: "inline-block", padding: "14px", textDecoration: this.props.completed ? 'line-through' : 'none'}}>{this.props.title}</Typography>
+                    <Typography style={{ display: "inline-block", padding: "14px", float: 'right' }}>{moment(this.props.rangeTo).format(fmt)}</Typography>
                 </div>
 
             </li>
