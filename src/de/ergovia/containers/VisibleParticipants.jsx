@@ -5,10 +5,34 @@ import gql from 'graphql-tag';
 import ParticipantList from '../components/ParticipantList';
 
 export const GET_PARTICIPANTS = gql`    
-    query getParticipantsWithGoalsInRange($start: LocalDate!, $end: LocalDate!) {
-        alleTeilnehmer(anfang: $start, ende: $end) {
-            id vorname nachname ziele {
-                id anfang ende zielerreicht
+    query getParticipantsWithGoalsInRange($start: DateTime!, $end: DateTime!) {
+        allParticipants {
+            id surname lastname goals(filter: {
+                OR: [{
+                    rangeFrom_gte: $start
+                    rangeTo_lte: $end
+                },{
+                    AND:[{
+                        rangeFrom_gte: $start
+                        rangeTo_gte: $end
+                    }, {
+                        rangeFrom_lte: $end
+                    }]
+                },{
+                    AND: [{
+                        rangeFrom_lte: $start
+                        rangeTo_lte: $end
+                    } , {
+                        rangeTo_gte: $start
+                    }]
+
+                },{
+                    rangeFrom_lte: $start
+                    rangeTo_gte: $end
+                }]
+
+            }) {
+                id rangeFrom rangeTo completed
             }
         }
     }
@@ -22,7 +46,7 @@ const withParticipants = graphql(GET_PARTICIPANTS, {
         if (data.error) return { hasErrors: true, participants: [] };
 
         return {
-            participants: data.alleTeilnehmer,
+            participants: data.allParticipants,
             refetchParticipants: data.refetch,
             ...ownProps
         }

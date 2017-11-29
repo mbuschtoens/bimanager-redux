@@ -86,4 +86,4 @@ class Participant extends React.Component {
 
 }
 
-export default Participant
+export default withStyles(styles)(Participant)
